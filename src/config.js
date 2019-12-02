@@ -4,7 +4,7 @@ const config = {
 
       schedule: {
         cals: ['https://bloodynipples.com/2019.ics'],
-        year: 2019,
+        year: new Date().getFullYear(),
         data: {
           day: []
         }
@@ -18,7 +18,7 @@ const config = {
 
       countdown: {
         event: "Christmas Party!",
-        date: new Date(2019, 12, 15),
+        date: new Date(2019, 11, 15),
       },
 
       money: {
@@ -32,8 +32,12 @@ const config = {
 
       soundcloud: {
         playlist: 'https://api.soundcloud.com/playlists/205051568'
-      }
+      },
 
+      chart: {
+        title: 'Suffer Score',
+        data_url: 'https://raw.githubusercontent.com/robrohan/react-home-dashboard/master/static/chart.json'
+      }
     }
   }
 }

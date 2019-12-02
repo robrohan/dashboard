@@ -4,14 +4,14 @@ import background from "./assets/background.jpeg";
 import { createStore, rootReducer } from "./common/robdux";
 import Config from './config';
 
-import { MoneyWidget } from "./widgets/money";
-import { InvestmentWidget } from "./widgets/investments";
+// import { MoneyWidget } from "./widgets/money";
+// import { InvestmentWidget } from "./widgets/investments";
 // import { SoundcloudWidget } from "./widgets/soundcloud";
 import { WeatherWidget } from "./widgets/weather";
 // import { CalendarWidget } from "./widgets/calendar";
 import { CountdownWidget } from "./widgets/countdown";
 import { DateTimeWidget } from "./widgets/datetime";
-import { SpendingWidget } from "./widgets/spending";
+import { ChartWidget } from "./widgets/chart";
 import { ScheduleWidget, ScheduleDayWidget } from "./widgets/schedule";
 
 
@@ -33,11 +33,11 @@ const App = () => {
           <WeatherWidget store={store} />
         </div>
         <div className="column">
-          <div className="row">
+          {/* <div className="row">
             <MoneyWidget store={store} />
             <InvestmentWidget store={store} />
-          </div>
-          <SpendingWidget />
+          </div> */}
+          <ChartWidget store={store} />
           {/* <SoundcloudWidget store={store} /> */}
         </div>
         <div className="column">

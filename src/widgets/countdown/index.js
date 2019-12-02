@@ -1,15 +1,22 @@
 import React from "react";
 
+const calcCount = (goal) => {
+  const today = new Date();
+  const count = Math.abs(
+    Math.round((today - goal) / (1000 * 60 * 60 * 24))
+  );
+
+  return count;
+}
+
 export class CountdownWidget extends React.Component {
   constructor(props) {
     super(props);
     const s = this.props.store.getState();
     const ns = s.dashboard.widgets.countdown;
+    const goal = ns.date;
 
-    const then =  ns.date;
-    const today = new Date();
-
-    const count = Math.abs(Math.round((today - then) / (1000 * 60 * 60 * 24)));
+    const count = calcCount(goal);
 
     this.state = {
       title: ns.event,
@@ -19,12 +26,8 @@ export class CountdownWidget extends React.Component {
 
   componentDidMount() {
     setInterval(() => {
-      const then = new Date(2019, 12, 15);
-      const today = new Date();
+      const count = calcCount(goal);
 
-      const count = Math.abs(
-        Math.round((today - then) / (1000 * 60 * 60 * 24))
-      );
       this.setState({
         count: count
       });
