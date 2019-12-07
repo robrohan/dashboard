@@ -1,5 +1,6 @@
 .datetime {
   background-color: transparent !important;
+  backdrop-filter: none !important;
   mix-blend-mode: difference;
 
   width: calc(100% - 15px);

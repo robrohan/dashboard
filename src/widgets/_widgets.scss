@@ -12,14 +12,14 @@
   position: relative;
   display: inline-block;
   border-radius: 3px;
-  background-color: rgba($white, 0.6);
+  background-color: rgba($white, 0.85);
   font-size: 13px;
   font-weight: bold;
   text-align: center;
   color: $grey-light;
   margin: 7.5px 7.5px 7.5px 7.5px;
   padding: 15px 0;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(10px);
 
   .heading {
     padding-bottom: calc(#{$base-spacing} * 2);
