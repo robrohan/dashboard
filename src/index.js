@@ -1,6 +1,6 @@
 import * as React from "react";
 import { render } from "react-dom";
-import background from "./assets/background.jpeg";
+import Backgrounds from "./backgrounds";
 import { createStore, rootReducer } from "./common/robdux";
 import Config from './config';
 
@@ -18,10 +18,18 @@ import { ScheduleWidget, ScheduleDayWidget } from "./widgets/schedule";
 const App = () => {
   const store = createStore(rootReducer, Config);
 
+  const bg = React.createRef();
+
+  React.useEffect( () => {
+    bg.current.style.backgroundImage 
+      = "url(" + Backgrounds[0].url + ")";
+  },[])
+
   return (
     <div className="dashboard">
       
-      <img className="background" src={background} />
+      <div className="background" ref={bg} ></div>
+
       <DateTimeWidget />
 
       <div className="row">

@@ -36,8 +36,7 @@ const config = {
 
       chart: {
         title: 'Suffer Score',
-        data_url_y: 'https://raw.githubusercontent.com/robrohan/react-home-dashboard/master/static/chart.json',
-        data_url: 'https://bloodynipples.com/score.json'
+        data_url: 'https://raw.githubusercontent.com/robrohan/react-home-dashboard/master/static/chart.json',
       }
     }
   }
