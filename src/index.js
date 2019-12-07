@@ -21,8 +21,8 @@ const App = () => {
   const bg = React.createRef();
 
   React.useEffect( () => {
-    bg.current.style.backgroundImage 
-      = "url(" + Backgrounds[0].url + ")";
+    const rnd = Math.round(Backgrounds.length * Math.random()) - 1;
+    bg.current.style.backgroundImage = ["url(", Backgrounds[rnd].url, ")"].join('');
   },[])
 
   return (

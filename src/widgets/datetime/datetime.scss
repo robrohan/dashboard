@@ -1,5 +1,7 @@
 .datetime {
   background-color: transparent !important;
+  mix-blend-mode: difference;
+
   width: calc(100% - 15px);
   .time {
     font-size: 55px;
