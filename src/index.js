@@ -30,20 +30,19 @@ const App = () => {
 
       <div className="row">
         <div className="column">
-          <WeatherWidget store={store} />
-        </div>
-        <div className="column">
-          {/* <div className="row">
-            <MoneyWidget store={store} />
-            <InvestmentWidget store={store} />
-          </div> */}
           <ChartWidget store={store} />
-          {/* <SoundcloudWidget store={store} /> */}
         </div>
+
         <div className="column">
-          <ScheduleDayWidget store={store} />
-          <CountdownWidget store={store} />
-          {/* <CalendarWidget /> */}
+          <div className="row">
+            <div className="column">
+              <WeatherWidget store={store} />
+            </div>
+            <div className="column">
+              <ScheduleDayWidget store={store} />
+              <CountdownWidget store={store} />
+            </div>
+          </div>
         </div>
       </div>
     </div>

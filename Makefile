@@ -8,11 +8,15 @@ build:
 clean:
 	rm -rf dist
 
-start:
+start: config.dev
 	npm run start
 
 remove_mac_files:
 	find ./ -name ".DS_Store" -exec rm {} \;
 
-publish: clean build remove_mac_files
+config.dev:
+	cp src/config.template.js src/config.js
+
+config.prod:
+	cp src/config.prod.js src/config.js
 	aws s3 sync --delete --cache-control max-age=604800 dist s3://hungrylegs.com

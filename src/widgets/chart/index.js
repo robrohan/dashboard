@@ -1,6 +1,6 @@
 import React from "react";
 import { Http } from "../../common/http";
-import { VictoryChart, VictoryLine, VictoryTheme } from "victory";
+import { VictoryChart, VictoryLine, VictoryBar, VictoryTheme } from "victory";
 
 const getData = (url) => {
   const http = new Http();
@@ -48,13 +48,38 @@ export class ChartWidget extends React.Component {
     return (
       <div className="widget spending">
         <div className="heading">{this.state.title}</div>
-        <VictoryChart theme={VictoryTheme.material}>
+        <VictoryChart 
+          maxDomain={{ y: 100 }}
+          theme={VictoryTheme.material}>
           <VictoryLine
             style={{
-              data: { stroke: "#c43a31" },
-              parent: { border: "1px solid #ccc"}
+              data: { stroke: "#cf0000" },
+              size: "1em"
             }}
             data={this.state.data}
+            y={(d) => (d.sst < 0) ? 0 : d.sst}
+            // x={(d) => {
+            //   if(d.date && d.date !== "") {
+            //     const s = d.date.split('-');
+            //     return s[2]; // + "/" + s[1];
+            //   }
+            //   return '';
+            // }}
+            interpolation="natural"
+            labelPlacement="vertical"
+            animate={{
+              duration: 2000,
+              onLoad: { duration: 1000 }
+            }}
+          />
+          <VictoryBar
+            style={{
+              data: { stroke: "#00fc00" },
+              size: "2em"
+            }}
+            data={this.state.data}
+            labels={(d) => d.dist}
+            y={(d) => (d.dist < 0) ? 0 : d.dist}
           />
         </VictoryChart>
       </div>
