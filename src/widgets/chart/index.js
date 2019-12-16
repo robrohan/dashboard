@@ -49,7 +49,7 @@ export class ChartWidget extends React.Component {
       <div className="widget spending">
         <div className="heading">{this.state.title}</div>
         <VictoryChart 
-          maxDomain={{ y: 100 }}
+          maxDomain={{ y: 200 }}
           theme={VictoryTheme.material}>
           <VictoryLine
             style={{
