@@ -16,6 +16,10 @@ const config = {
         units: "metric",
       },
 
+      tides: {
+        location: 341,
+      },
+
       countdown: {
         event: "Christmas Party!",
         date: new Date(2019, 11, 15),

@@ -13,6 +13,7 @@ import { CountdownWidget } from "./widgets/countdown";
 import { DateTimeWidget } from "./widgets/datetime";
 import { ChartWidget } from "./widgets/chart";
 import { ScheduleWidget, ScheduleDayWidget } from "./widgets/schedule";
+import { Tides, TidesWidget } from "./widgets/tides";
 
 
 const App = () => {
@@ -52,6 +53,10 @@ const App = () => {
             </div>
           </div>
         </div>
+      </div>
+
+      <div className="row">
+        <TidesWidget store={store} />
       </div>
     </div>
   );
