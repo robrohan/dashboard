@@ -37,6 +37,7 @@ export class CalendarParser {
   }
 
   parse(file) {
+    file = file.replace(/\r\n/g, '\n');
     const lines = file.split('\n');
 
     let workingEvent;
