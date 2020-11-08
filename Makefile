@@ -8,7 +8,7 @@ build:
 clean:
 	rm -rf dist
 
-start: config.dev
+start:
 	npm run start
 
 remove_mac_files:
@@ -20,5 +20,10 @@ config.dev:
 config.prod:
 	cp src/config.prod.js src/config.js
 
+# -------------------------------
+
 publish: clean config.prod build remove_mac_files
 	aws s3 sync --delete --cache-control max-age=604800 dist s3://hungrylegs.com
+	aws cloudfront create-invalidation \
+    --distribution-id EPC5U432PDE2N \
+    --paths "/*"
