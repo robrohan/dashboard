@@ -1,8 +1,8 @@
-import React from "react";
+import * as React from "react";
 import { Http } from "../../common/http";
 
-export class MoneyWidget extends React.Component {
-  constructor(props) {
+export class MoneyWidget<WidgetProps> extends React.Component {
+  constructor(props: WidgetProps) {
     super(props);
 
     this.state = {
@@ -16,7 +16,7 @@ export class MoneyWidget extends React.Component {
     const http = new Http();
     const ns = this.props.store.getState().dashboard.widgets.money;
     http.fetch(ns.holdings).then(v => {
-      if(typeof v === 'string') {
+      if (typeof v === 'string') {
         v = JSON.parse(v)
       }
       this.setState(v);

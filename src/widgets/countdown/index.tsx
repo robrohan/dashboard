@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 
 const calcCount = (goal) => {
   const today = new Date();
@@ -9,8 +9,8 @@ const calcCount = (goal) => {
   return count;
 }
 
-export class CountdownWidget extends React.Component {
-  constructor(props) {
+export class CountdownWidget<WidgetProps> extends React.Component {
+  constructor(props: WidgetProps) {
     super(props);
     const s = this.props.store.getState();
     const ns = s.dashboard.widgets.countdown;

@@ -2,5 +2,5 @@
 dist
 .cache
 node_modules
-config.prod.js
-config.js
+config.prod.ts
+config.ts

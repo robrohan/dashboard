@@ -1,7 +1,7 @@
-import React from "react";
+import * as React from "react";
 
-export class TidesWidget extends React.Component {
-  constructor(props) {
+export class TidesWidget<WidgetProps> extends React.Component {
+  constructor(props: WidgetProps) {
     super(props);
 
     this.state = {
@@ -21,7 +21,7 @@ export class TidesWidget extends React.Component {
       <div className="widget tides">
         <div className="heading">Tides</div>
         <div className="graph">
-          <img src={"https://tides.mobilegeographics.com/graphs/"+s+".svg"} />
+          <img src={"https://tides.mobilegeographics.com/graphs/" + s + ".svg"} />
         </div>
       </div>
     );

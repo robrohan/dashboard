@@ -1,18 +1,18 @@
-import React from "react";
+import * as React from "react";
 import { Http } from '../../common/http';
 import { CalendarParser } from '../../common/icalparser';
 import { formatDateLookup, formatDateDisplay } from '../../common/dates';
 
 const parseCalendars = (calendars) => {
-  if(!calendars) return;
-  return new Promise( (resolve, reject) => {
+  if (!calendars) return;
+  return new Promise((resolve, reject) => {
     const parser = new CalendarParser();
     const http = new Http();
 
     try {
       const allPromise = calendars.map(cal => http.xhr(cal));
-      Promise.all(allPromise).then( result => {
-        result.forEach( r => {
+      Promise.all(allPromise).then(result => {
+        result.forEach(r => {
           parser.parse(r);
         });
         resolve(parser);
@@ -23,8 +23,8 @@ const parseCalendars = (calendars) => {
   });
 };
 
-export class ScheduleWidget extends React.Component {
-  constructor(props) {
+export class ScheduleWidget<WidgetProps> extends React.Component {
+  constructor(props: WidgetProps) {
     super(props);
     const s = this.props.store.getState();
     this.state = {
@@ -38,26 +38,26 @@ export class ScheduleWidget extends React.Component {
 
   componentDidMount() {
     parseCalendars(this.state.cals).then(cals => {
-      cals.calendar.events.forEach( event => {
+      cals.calendar.events.forEach(event => {
         const dateKey = formatDateLookup(event.date);
         const evtStore = this.state.eventStore;
-        if(!evtStore[dateKey]) evtStore[dateKey] = [];
-  
+        if (!evtStore[dateKey]) evtStore[dateKey] = [];
+
         let events = evtStore[dateKey];
         events.push(event);
-  
+
         const li = this.squareRef.current.querySelector('#D' + dateKey);
         // Can be a date beyond the displayed year
-        if(li) {
+        if (li) {
           const node = li.querySelector("div");
           const txt = events.map(d => `<p class='dash'>${d.summary}<br/>${d.description}</p>`);
-          if(node) {
+          if (node) {
             li.setAttribute('data-level', Math.min(events.length, 3));
             node.innerHTML = txt.join('');
           }
         }
       });
-  
+
       const today = formatDateLookup(new Date());
       const msg = {
         type: 'SCHEDULE_SELECT_DAY',
@@ -72,11 +72,11 @@ export class ScheduleWidget extends React.Component {
 
   onTouchHandler(store) {
     return (e) => {
-      const id = e.currentTarget.id.toString().replace('D','');
+      const id = e.currentTarget.id.toString().replace('D', '');
       const date = e.currentTarget.getAttribute('data-date').toString();
-      if(id) {
+      if (id) {
         const events = this.state.eventStore[id];
-        if(events) {
+        if (events) {
           store.dispatch({
             type: 'SCHEDULE_SELECT_DAY',
             payload: events
@@ -104,12 +104,12 @@ export class ScheduleWidget extends React.Component {
 
       const level = 0;
       if (iterateDate.getDay() !== (i % 7)) {
-        this.state.table.push(<li data-level="-1" key={"D"+Math.random()}>&nbsp;</li>)
+        this.state.table.push(<li data-level="-1" key={"D" + Math.random()}>&nbsp;</li>)
       } else {
         // Hook for us to set any events on the calendar
         const date = formatDateLookup(iterateDate);
         this.state.table.push(
-          <li id={"D"+date} key={"D"+date}
+          <li id={"D" + date} key={"D" + date}
             className={(today === date) ? 'today' : ''}
             data-level={level}
             data-pos={(i % 7) + "-" + (Math.max(0, i - 181) > 0 ? 1 : 0)}
@@ -169,8 +169,8 @@ export class ScheduleDayWidget extends React.Component {
   constructor(props) {
     super(props);
     this.state = { text: [] };
-    this.sub = this.props.store.subscribe( (s,a) => {
-      if(s && a === 'SCHEDULE_SELECT_DAY') {
+    this.sub = this.props.store.subscribe((s, a) => {
+      if (s && a === 'SCHEDULE_SELECT_DAY') {
         this.setState({ text: s.dashboard.widgets.schedule.data.day });
       }
     });

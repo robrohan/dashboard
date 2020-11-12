@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { Http } from "../../common/http";
 import { weekdays, humanDays } from "../../common/dates";
 
@@ -8,7 +8,7 @@ const getWeather = (key, location, units) => {
   const request_url = `https://api.openweathermap.org/data/2.5/forecast?q=${location}&appid=${key}&units=${units}`;
 
   return http.fetch(request_url).then(data => {
-    if(typeof data === 'string') {
+    if (typeof data === 'string') {
       data = JSON.parse(data)
     }
     let response = [data.list[1], data.list[9], data.list[17]];
@@ -16,8 +16,8 @@ const getWeather = (key, location, units) => {
   });
 };
 
-export class WeatherWidget extends React.Component {
-  constructor(props) {
+export class WeatherWidget<WidgetProps> extends React.Component {
+  constructor(props: WidgetProps) {
     super(props);
 
     this.state = {
@@ -45,9 +45,9 @@ export class WeatherWidget extends React.Component {
           });
         });
       })
-      .catch(error => {
-        console.log(`Encountered error: `, error);
-      });
+        .catch(error => {
+          console.log(`Encountered error: `, error);
+        });
     }
   }
 

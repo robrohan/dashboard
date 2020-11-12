@@ -1,6 +1,6 @@
-import React from "react";
+import * as React from "react";
 
-export class CalendarWidget extends React.Component {
+export class CalendarWidget<WidgetProps> extends React.Component {
   render() {
     return (
       <div className="widget calendar">

@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { Http } from "../../common/http";
 
 const get_coin = (coin, currency) => {
@@ -6,7 +6,7 @@ const get_coin = (coin, currency) => {
   const request_url = `https://api.coinpaprika.com/v1/tickers/${coin}?quotes=${currency}`;
 
   return http.fetch(request_url).then(v => {
-    if(typeof v === 'string') v = JSON.parse(v);
+    if (typeof v === 'string') v = JSON.parse(v);
     return v;
   });
 };
@@ -20,7 +20,7 @@ const compute_portfolio = (holdings, currency) => {
       get_coin(coin, currency)
         .then(coin_data => {
           coins[coin_data.symbol] = coin_data;
-          
+
           const price = parseFloat(coin_data.quotes[currency].price || 0);
 
           let coin_value = price * holdings.crypto.coins[coin];
@@ -45,8 +45,8 @@ const compute_portfolio = (holdings, currency) => {
   });
 };
 
-export class InvestmentWidget extends React.Component {
-  constructor(props) {
+export class InvestmentWidget<WidgetProps> extends React.Component {
+  constructor(props: WidgetProps) {
     super(props);
 
     this.state = {
@@ -65,7 +65,7 @@ export class InvestmentWidget extends React.Component {
     const ns = this.props.store.getState().dashboard.widgets.investments;
     const http = new Http();
     let holdings = await http.fetch(ns.holdings).then(v => {
-      if(typeof v === 'string') v = JSON.parse(v);
+      if (typeof v === 'string') v = JSON.parse(v);
       return v;
     });
 

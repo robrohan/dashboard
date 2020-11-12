@@ -1,7 +1,7 @@
-import React from "react";
+import * as React from "react";
 
-export class SoundcloudWidget extends React.Component {
-  constructor(props) {
+export class SoundcloudWidget<WidgetProps> extends React.Component {
+  constructor(props: WidgetProps) {
     super(props);
     const ns = this.props.store.getState().dashboard.widgets.soundcloud;
     this.state = {
@@ -20,7 +20,7 @@ export class SoundcloudWidget extends React.Component {
           height="100"
           scrolling="no"
           allow="autoplay"
-          src={ playlistUrl }
+          src={playlistUrl}
         ></iframe>
       </div>
     );

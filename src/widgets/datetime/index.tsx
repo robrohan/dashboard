@@ -1,7 +1,7 @@
-import React from "react";
+import * as React from "react";
 
-export class DateTimeWidget extends React.Component {
-  constructor(props) {
+export class DateTimeWidget<WidgetProps> extends React.Component {
+  constructor(props: WidgetProps) {
     super(props);
 
     this.state = {

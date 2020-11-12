@@ -1,4 +1,11 @@
-export function createStore(initialReducer, initialState = {}, enhancer) {
+export type RStore = {
+  getState: Function,
+  dispatch: Function,
+  subscribe: Function,
+  unsubscribe: Function,
+}
+
+export function createStore(initialReducer, initialState = {}, enhancer?: Function): RStore {
   if (enhancer) {
     return enhancer(createStore)(initialReducer, initialState);
   }
@@ -11,10 +18,10 @@ export function createStore(initialReducer, initialState = {}, enhancer) {
     },
     dispatch(action) {
       state = reducer(state, action);
-      subscribers.forEach(subscriber => { if(subscriber) subscriber(state, action.type || '') });
+      subscribers.forEach(subscriber => { if (subscriber) subscriber(state, action.type || '') });
     },
     subscribe(listener) {
-      if(subscribers.includes(listener)) {
+      if (subscribers.includes(listener)) {
         return undefined;
       }
       subscribers.push(listener);
@@ -29,7 +36,7 @@ export function createStore(initialReducer, initialState = {}, enhancer) {
 
 // Live dangerously. Don't Object.assign({}, s) it modify it in place - whoohooo
 export function rootReducer(s, a) {
-  switch(a.type) {
+  switch (a.type) {
     case "__INIT__":
       return s;
     case "SCHEDULE_SELECT_DAY":
