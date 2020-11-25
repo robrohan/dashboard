@@ -21,7 +21,7 @@ export class TidesWidget<WidgetProps> extends React.Component {
       <div className="widget tides">
         <div className="heading">Tides</div>
         <div className="graph">
-          <img src={"https://tides.mobilegeographics.com/graphs/" + s + ".svg"} />
+          <img src={`https://www.tide-forecast.com/system/charts-png/${s}/tides.png`} />
         </div>
       </div>
     );

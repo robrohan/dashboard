@@ -17,7 +17,7 @@ const config = {
       },
 
       tides: {
-        location: 341,
+        location: "Auckland-New-Zealand",
       },
 
       countdown: {
