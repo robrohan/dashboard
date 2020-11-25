@@ -15,10 +15,10 @@ remove_mac_files:
 	find ./ -name ".DS_Store" -exec rm {} \;
 
 config.dev:
-	cp src/config.template.js src/config.js
+	cp src/config.template.ts src/config.ts
 
 config.prod:
-	cp src/config.prod.js src/config.js
+	cp src/config.prod.ts src/config.ts
 
 # -------------------------------
 
