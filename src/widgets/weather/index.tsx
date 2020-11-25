@@ -69,7 +69,7 @@ export class WeatherWidget<WidgetProps> extends React.Component {
             </div>
             <div className="group-content">
               <img
-                src={`http://openweathermap.org/img/wn/${day.icon}@2x.png`}
+                src={`https://openweathermap.org/img/wn/${day.icon}@2x.png`}
               />
             </div>
             <div className="temp">{Math.round(day.temp)}°</div>
