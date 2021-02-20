@@ -49,7 +49,7 @@ export class ChartWidget<WidgetProps> extends React.Component {
       <div className="widget spending">
         <div className="heading">{this.state.title}</div>
         <VictoryChart
-          maxDomain={{ y: 200 }}
+          maxDomain={{ y: 90 }}
           theme={VictoryTheme.material}>
           <VictoryLine
             style={{
@@ -75,7 +75,7 @@ export class ChartWidget<WidgetProps> extends React.Component {
           <VictoryBar
             style={{
               data: { stroke: "#00fc00" },
-              size: "2em"
+              size: "1em"
             }}
             data={this.state.data}
             labels={(d) => d.dist}
